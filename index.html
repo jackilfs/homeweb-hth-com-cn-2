@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息索引 · 华体会资料整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(145deg, #f9e8d2 0%, #f3d9b8 40%, #ebcba0 100%);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #3b2e1e;
+        }
+
+        .page-wrapper {
+            max-width: 820px;
+            width: 100%;
+        }
+
+        /* 文章卡片 */
+        .post-card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 36px 36px 28px 28px;
+            box-shadow: 0 12px 30px rgba(120, 80, 40, 0.12), 0 4px 10px rgba(0,0,0,0.03);
+            padding: 2.8rem 2.2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        @media (max-width: 560px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .post-card {
+                padding: 2rem 1.2rem;
+                border-radius: 28px;
+            }
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 560;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #2b2113;
+            margin-bottom: 0.4rem;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+            color: #7f6b4e;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #efe0cc;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #4d3d28;
+            background: #fbf5ea;
+            padding: 1.2rem 1.6rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #dbb88a;
+        }
+
+        .section-heading {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #3b2b18;
+            margin: 2rem 0 0.8rem;
+            padding-left: 0.2rem;
+        }
+
+        .section-heading::before {
+            content: "▍";
+            color: #c9a470;
+            margin-right: 6px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #3b2e1c;
+        }
+
+        p a {
+            color: #9f7c4a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px dashed #dbb88a;
+            transition: border-color 0.2s, color 0.2s;
+            padding: 0 2px;
+        }
+
+        p a:hover {
+            color: #634d2b;
+            border-bottom-style: solid;
+            border-color: #b3894e;
+        }
+
+        /* 引用提示块 */
+        .insight-box {
+            background: #f7efe3;
+            border-radius: 30px;
+            padding: 1.6rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #e7d5bd;
+            box-shadow: inset 0 1px 4px rgba(255, 240, 220, 0.6);
+        }
+
+        .insight-box p {
+            margin-bottom: 0.4rem;
+            font-style: normal;
+        }
+
+        .insight-box .insight-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #8f754e;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-mini {
+            background: #faf5ed;
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0;
+            border-left: 6px solid #dbb88a;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #3b2a18;
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini p {
+            margin-bottom: 0.5rem;
+            font-size: 0.98rem;
+        }
+
+        .access-note {
+            margin-top: 2.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e7d5bd;
+            font-size: 0.95rem;
+            color: #6f5a3b;
+            background: #fbf6ed;
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem;
+            text-align: center;
+        }
+
+        /* 按钮感链接 (用于装饰性链接) */
+        .button-link {
+            display: inline-block;
+            background: #e9d4b6;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: #3b2a18;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid #dbbc96;
+        }
+
+        .button-link:hover {
+            background: #dfc5a0;
+            transform: scale(1.02);
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #8a7657;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2cfb4;
+            margin: 1.5rem 0;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 440px) {
+            .article-title {
+                font-size: 1.6rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .insight-box {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="post-card">
+        <h1 class="article-title">华体会资料整理笔记</h1>
+        <div class="article-meta">
+            <span>📂 信息索引</span>
+            <span>📅 近期更新</span>
+            <span>✏️ 日常记录</span>
+        </div>
+
+        <p class="lead">
+            每天都要面对海量内容，与其被动接收，不如自己动手梳理。这一篇笔记从<strong>资料整理</strong>的角度，记录关于 <a href="https://homeweb-hth.com.cn">华体会</a> 的一些信息来源、内容特点以及日常查阅的小习惯。不夸张，只是把观察到的东西写下来。
+        </p>
+
+        <!-- 正文段落：多角度 -->
+        <div class="section-heading">为什么想到整理这些</div>
+        <p>
+            年初开始，我发现自己收藏夹里关于<strong>华体会</strong>的链接越来越多——有活动记录、功能介绍、社区讨论，还有一些零散的截图。如果不做标记，过两周就不知道哪个页面说了什么。于是决定像做读书卡片一样，把关键条目和出处统一放在一个文档里，顺便也记录下每次浏览时的感受。
+        </p>
+        <p>
+            整理的过程中发现，很多信息其实都指向同一个站点，也就是 <a href="https://homeweb-hth.com.cn">华体会</a> 。它的内容层级比较清楚，更新也稳定，很适合作为索引的锚点。其他来源的文章或帖子，也经常引用里面的段落，可见这个站在整个信息网络里算是一个核心节点。
+        </p>
+
+        <div class="section-heading">印象比较深的几个特点</div>
+        <p>
+            第一是<strong>分类习惯</strong>。「华体会」的内容大致可以分成资讯类、说明类和互动类。资讯类偏动态，说明类偏功能或流程，互动类则更随意。这种划分对我做标签很有帮助，每次保存页面时顺手打个类别，后来查起来效率高了不少。
+        </p>
+        <p>
+            第二是<strong>语言风格</strong>。大部分文字力求清晰，不堆砌术语，偶尔会有一点口语化的表达，读起来不那么累。比如有些段落会用“我们”来拉近距离，但并不让人觉得刻意。这种分寸感我觉得挺难得。
+        </p>
+        <p>
+            第三是<strong>链接的实用性</strong>。很多页面会在合适的位置给出延伸阅读，而且链接文本比较直接，很少出现“点击这里”之类的模糊用语。比如直接写<a href="https://homeweb-hth.com.cn">华体会</a>，或者写具体的文章名，用户一看就知道要去哪里。
+        </p>
+
+        <!-- 引用提示 -->
+        <div class="insight-box">
+            <span class="insight-label">💡 整理提示</span>
+            <p>如果你也在收集或研究相关内容，建议直接用站点本身的分类导航做骨架，再把零散笔记贴在对应条目下面。这样既保留了原始语境，又方便日后回溯。别怕一开始乱，整理本身就是一个慢慢变清晰的过程。</p>
+        </div>
+
+        <div class="section-heading">常见的索引场景</div>
+        <p>
+            <strong>场景一：快速回顾某类信息。</strong> 比方说想看看近期的活动安排，直接进 <a href="https://homeweb-hth.com.cn">华体会</a> 对应的版块就好，不用到处翻聊天记录。我自己还会把常用页面的标题和链接记在一张表格里，省得每次都重新搜索。
+        </p>
+        <p>
+            <strong>场景二：对比不同来源的说法。</strong> 有时候同一个话题会有多个讨论，把「华体会」的官方说明和其他社区的观点放在一起看，能更全面地理解事情。做对比的时候，记得标注时间，因为内容可能更新。
+        </p>
+        <p>
+            <strong>场景三：分享给朋友参考。</strong> 朋友问起来，直接发一个整理好的条目，比转发一堆截图要清爽。而且对方如果对某个点感兴趣，自己点进 <a href="https://homeweb-hth.com.cn">华体会</a> 就能看到完整内容，不需要我二次解释。
+        </p>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h3>❓ 几个常被问到的问题</h3>
+            <p><strong>Q：资料太多，从哪里开始整理？</strong><br> A：先挑一个你最常看的页面，比如首页，把它的结构和主要链接记录下来，然后逐渐扩展。</p>
+            <p><strong>Q：整理笔记用纸笔还是电子？</strong><br> A：都可以。电子文档好检索，纸笔写起来更有手感。我现在是两者结合——电子版做索引，手写卡片记想法。</p>
+            <p><strong>Q：怎么判断信息是否过时？</strong><br> A：留意页面上的更新日期，或者直接看网站有没有版本标识。对于拿不准的内容，可以主动去 <a href="https://homeweb-hth.com.cn">华体会</a> 确认一下最新状态。</p>
+        </div>
+
+        <div class="access-note">
+            <span>📎 日常访问 · 索引入口</span><br>
+            如果你也习惯从固定位置开始浏览，可以直接使用 <a href="https://homeweb-hth.com.cn" class="button-link" style="margin: 0.4rem 0; display: inline-block;">华体会</a> 作为起点。这个链接一直稳定，内容也在持续更新，适合放在书签栏。
+        </div>
+
+        <hr>
+        <p style="font-size: 0.9rem; color: #7a6648; text-align: center; margin-top: 1rem;">
+            以上是个人整理过程中的一些记录，不构成任何建议，仅供日常参考。
+        </p>
+        <div class="footer-note">
+            index · 资料整理版 · 简洁博客式
+        </div>
+    </div>
+</div>
+</body>
+</html>

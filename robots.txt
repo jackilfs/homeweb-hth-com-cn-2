@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jackilfs.github.io/homeweb-hth-com-cn-2/sitemap.xml
