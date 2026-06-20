@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻将胡了 · 网站导航与说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0ede8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #2c2b28;
+    }
+
+    /* 深色头图 — 杂志式大横幅 */
+    .hero {
+      background: linear-gradient(145deg, #1a1a1c 0%, #262527 100%);
+      color: #eae7e0;
+      padding: 5rem 1.5rem 4.5rem;
+      text-align: center;
+      position: relative;
+      border-bottom: 2px solid #c7a453;
+      box-shadow: inset 0 -1px 0 rgba(255, 215, 130, 0.15);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4af5e, #b8933f, #d4af5e, transparent);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: #cbb386;
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 1.8rem auto 0;
+      font-size: 1.05rem;
+      color: #cdc8bc;
+      font-weight: 300;
+    }
+
+    /* 正文区域：浅色背景，舒适留白 */
+    .content {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3rem 1.8rem 4rem;
+      background-color: #faf9f5;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: #3e3c37;
+      border-left: 4px solid #b8964b;
+      padding-left: 1rem;
+      margin: 2.2rem 0 1.2rem;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    .content p {
+      margin-bottom: 1.4rem;
+      font-size: 1.02rem;
+      color: #3a3833;
+    }
+
+    .content p a {
+      color: #b07d35;
+      text-decoration: none;
+      border-bottom: 1px solid #d4b07a;
+      padding-bottom: 0.05rem;
+      transition: color 0.2s, border-color 0.2s;
+      font-weight: 500;
+    }
+
+    .content p a:hover {
+      color: #8a5f1f;
+      border-bottom-color: #8a5f1f;
+    }
+
+    /* 小卡片 / 摘要块 */
+    .card-note {
+      background: #f3efe7;
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.8rem 0;
+      border: 1px solid #e3dccc;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .card-note h3 {
+      font-size: 1.15rem;
+      font-weight: 450;
+      color: #4a4235;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-note h3::before {
+      content: '◈';
+      color: #b8964b;
+      font-size: 1.2rem;
+    }
+
+    .card-note p {
+      margin-bottom: 0.6rem;
+    }
+
+    .card-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-note a {
+      color: #b07d35;
+      text-decoration: none;
+      border-bottom: 1px solid #d4b07a;
+      font-weight: 500;
+    }
+
+    .card-note a:hover {
+      color: #8a5f1f;
+      border-bottom-color: #8a5f1f;
+    }
+
+    /* 页尾访问提示 — 杂志式底部 */
+    .footer-prompt {
+      background: #1f1e1d;
+      color: #cbc5b8;
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      margin-top: 0;
+      border-top: 1px solid #353230;
+    }
+
+    .footer-prompt .inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-prompt p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .footer-prompt .emph-link {
+      color: #dbbd82;
+      border-bottom: 1px solid #7f693d;
+      text-decoration: none;
+      font-weight: 500;
+      padding-bottom: 0.1rem;
+      transition: color 0.25s;
+    }
+
+    .footer-prompt .emph-link:hover {
+      color: #edcf93;
+      border-bottom-color: #b3944d;
+    }
+
+    .footer-prompt .signature {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: #706a60;
+      margin-top: 2rem;
+      border-top: 1px solid #2f2c28;
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 700px) {
+      .hero {
+        padding: 3.2rem 1.2rem 3rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+      .hero .sub {
+        font-size: 0.85rem;
+        letter-spacing: 4px;
+      }
+      .content {
+        padding: 2rem 1.2rem 3rem;
+      }
+      .section-title {
+        font-size: 1.25rem;
+      }
+      .card-note {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .content p {
+        font-size: 0.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 杂志式深色头图 -->
+  <header class="hero">
+    <h1>麻将胡了</h1>
+    <div class="sub">MAHJONG · 玩法与资讯</div>
+    <p>从规则到文化，从牌型到策略——这是为希望快速了解「麻将胡了」网站用途的人准备的简明导航。</p>
+  </header>
+
+  <!-- 浅色正文区 -->
+  <main class="content">
+
+    <!-- 背景说明 -->
+    <h2 class="section-title">为什么需要这样一个页面</h2>
+    <p>
+      打开一个陌生的麻将站点，很多人第一反应是找「这网站到底是做什么的」。如果你恰好搜到了「麻将胡了」这个名字，却不确定它涵盖哪些内容，那么下面几段介绍会帮你理清轮廓。这个网站围绕麻将游戏展开，提供牌型参考、术语解读、常见玩法梳理以及一些实用工具入口。无论你是刚接触麻将的新手，还是想查证特殊胡牌牌型的老玩家，都可以在这里找到对应的说明。
+    </p>
+
+    <!-- 三段自然介绍：特点 + 场景 + 摘要 -->
+    <h2 class="section-title">内容特点：从牌型到术语</h2>
+    <p>
+      站点主要整理了几大类信息：标准麻将的胡牌牌型（如平胡、碰碰胡、七对等）、不同地区规则的差异说明、以及计番方式的简单对照。没有复杂的论坛或社交功能，更接近一本轻量的参考手册。比如你想确认「清一色」的定义是否包含字牌，或者「杠上开花」在哪些变体中计番不同，直接查阅对应条目即可。结构偏向分类式，方便按需跳转。
+    </p>
+
+    <!-- 第二个自然段 + 嵌入卡片增加变化 -->
+    <div class="card-note">
+      <h3>使用场景参考</h3>
+      <p>
+        周末和亲友约牌，想提前温习几种冷门胡法；或者刚接触四川麻将，希望快速了解「血战到底」与「缺一门」的关联规则——这些场景下，「麻将胡了」的页面可以当作速查工具。没有广告弹窗干扰，内容以文字说明和简洁图表为主。
+      </p>
+      <p>
+        你也可以把它理解为一张索引：想知道某个牌型叫什么、怎么算番，从这里开始搜索通常比直接翻规则书更省时间。
+      </p>
+    </div>
+
+    <!-- 第三段介绍：FAQ 摘要风格 -->
+    <h2 class="section-title">常见方向：FAQ 摘要</h2>
+    <p>
+      很多初次到访的用户会问：站点是否包含教学动画？是否有在线对战？目前没有。它更偏向文字与静态示例，适合提前阅读、对照学习。如果你需要确认某个胡牌组合是否成立，或者想了解「十三幺」的组成条件，站内已经有整理好的条目。此外，部分页面附有简单计分表，方便在实战中快速核对。
+    </p>
+    <p>
+      对于已经熟悉基础玩法的玩家，网站还收录了一些地方变体的特殊规定，例如广东麻将的「鸡胡」限制、日本麻将的「役种」一览等。这些内容未必详尽到每个细节，但可以作为进一步了解的起点。
+    </p>
+
+    <!-- 再次自然强调链接的句子（不同位置、不同语境） -->
+    <p style="margin-top: 1.6rem;">
+      简而言之，如果你需要一个干净、直接的中文麻将参考站点，不妨看看 <a href="https://webs-mahjong.com">麻将胡了</a>。它没有多余的社交模块，所有条目都围绕牌局本身展开。
+    </p>
+
+  </main>
+
+  <!-- 页尾访问提示 -->
+  <footer class="footer-prompt">
+    <div class="inner">
+      <p>
+        想直接查阅牌型与术语？<br>
+        下面这个链接就是站点的入口——
+      </p>
+      <p style="font-size: 1.15rem; margin-top: 0.6rem;">
+        <a href="https://webs-mahjong.com" class="emph-link">麻将胡了</a>
+      </p>
+      <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #a89f91;">
+        内容基于通用麻将规则整理，不保证覆盖所有地方变体。<br>
+        建议结合当地常见玩法对照参考。
+      </p>
+      <div class="signature">
+        — 介绍页 · 杂志式导航 —
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
